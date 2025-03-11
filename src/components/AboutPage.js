@@ -1,12 +1,12 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { UserPlus, Briefcase, MessageSquare } from "lucide-react";
 import sagar from "../images/sagar.jpg";
 import dhiraj from "../images/dhiraj.jpg";
 import akanksha from "../images/akanksha.jpg";
 import swati from "../images/swati.jpg";
 import anjali from "../images/anjali.jpg";
-import krushna from "../images/krushna.jpg";
+import krushna from "../images/krushna.png";
 import office from "../images/office.jpg";
 import Aaditi from "../images/Aaditi.jpg";
 import Ankita from "../images/Ankita.jpg";
@@ -19,6 +19,16 @@ export default function AboutPage() {
   const [customers, setCustomers] = useState(0);
   const [services, setServices] = useState(0);
   const [feedbacks, setFeedbacks] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCustomers((prev) => prev + Math.floor(Math.random() * 5));
+      setServices((prev) => prev + Math.floor(Math.random() * 3));
+      setFeedbacks((prev) => prev + Math.floor(Math.random() * 4));
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="bg-slate-50">
@@ -55,9 +65,13 @@ export default function AboutPage() {
               img: Neeleshsir,
             },
           ].map((Mainmember, ind) => (
-            <div key={ind} className="py-4 rounded-md w-92 h-full shadow-md">
+            <div
+              key={ind}
+              className="py-4 rounded-md w-92 h-full shadow-md  text-center"
+            >
               <img
                 className="w-72 h-56 mx-auto mb-4"
+                // className="w-72 h-56 object-cover rounded-md shadow-lg"
                 src={Mainmember.img}
                 alt={Mainmember.name}
               />
@@ -106,7 +120,7 @@ export default function AboutPage() {
               className="p-6 rounded-lg shadow-xl bg-white border-l-4 border-indigo-500"
             >
               <img
-                className="w-80 h-60 mx-auto rounded-md mb-4"
+                className="w-32 h-32 rounded-full mx-auto  mb-4 border border-black"
                 src={member.img}
                 alt={member.name}
               />
@@ -116,7 +130,7 @@ export default function AboutPage() {
           ))}
         </div>
       </section>
-      <section className="flex flex-col items-center justify-center min-h-screen gap-6 md:flex-row">
+      <section className="flex flex-col items-center justify-center min-h-96 gap-6 md:flex-row">
         {/* Total Customers Card */}
         <div className="w-80 p-6 shadow-lg rounded-2xl bg-white text-center">
           <h2 className="text-2xl font-semibold text-gray-700">
